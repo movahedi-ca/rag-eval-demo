@@ -1,0 +1,491 @@
+{
+  "generated_at": "2026-09-26T03:24:36.937890+00:00",
+  "corpus": {
+    "description": "14 passages of public regulatory text: sections 1-10 of the TBS Directive on Automated Decision-Making (publications.gc.ca, catalogue BT48-31-2021E-PDF) and a professional summary of OSFI Guideline E-23 model risk management expectations (BLG, Nov 2025). 12 test questions with hand-written reference answers.",
+    "n_passages": 14,
+    "n_questions": 12
+  },
+  "retriever": "sklearn TF-IDF (sublinear_tf, 1-2 grams, english stop words), cosine similarity",
+  "generator": "Gemini free tier via gemini skill CLI, model gemini-3.5-flash-lite",
+  "judge": "Ragas 0.4.3 metrics (faithfulness, context_precision_with_reference, answer_relevancy); LLM judge = gemini-3.5-flash-lite via custom instructor-style wrapper; embeddings = local TF-IDF (deterministic, CPU-only)",
+  "variants": {
+    "baseline": {
+      "config": {
+        "chunk_size": 400,
+        "overlap": 0,
+        "top_k": 3
+      },
+      "n_chunks": 27,
+      "samples": [
+        {
+          "question_id": "Q01",
+          "question": "When did the Directive on Automated Decision-Making take effect, and by when was compliance required?",
+          "ground_truth": "The Directive took effect on April 1, 2019, with compliance required by April 1, 2020.",
+          "contexts": [
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. I",
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with i",
+            "[P05 Source code release and documenting decisions] decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements."
+          ],
+          "answer": "The Directive on Automated Decision-Making took effect on April 1, 2019. Compliance with the directive was required by no later than April 1, 2020."
+        },
+        {
+          "question_id": "Q02",
+          "question": "Which kinds of systems are excluded from the Directive's scope?",
+          "ground_truth": "Automated Decision Systems operating in test environments, National Security Systems, and systems developed or procured on or before April 1, 2020.",
+          "contexts": [
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. I",
+            "[P01 Directive purpose, effective date and scope] t applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P05 Source code release and documenting decisions] Departments must release custom source code owned by the Government of Canada as per the Directive on Service and Digital, unless the source code is processing data classified SECRET, TOP SECRET or PROTECTED C, disclosure would otherwise be exempted or excluded under the Access to Information Act, or an exemption is provided by the Chief Information Officer of Canada. Departments must document the"
+          ],
+          "answer": "Based on the provided passages, the Directive excludes Automated Decision Systems operating in test environments and National Security Systems."
+        },
+        {
+          "question_id": "Q03",
+          "question": "What must a department do with the Algorithmic Impact Assessment before production and after changes?",
+          "ground_truth": "Complete the AIA before production, update it when system functionality or scope changes, and publish the final results in an accessible format via Government of Canada websites.",
+          "contexts": [
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system fun",
+            "[P02 Algorithmic Impact Assessment duties] ctionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P10 Definitions: ADS and AIA] An Automated Decision System includes any technology that either assists or replaces the judgement of human decision-makers. These systems draw from fields like statistics, linguistics, and computer science, and use techniques such as rules-based systems, regression, predictive analytics, machine learning, deep learning, and neural nets. An Algorithmic Impact Assessment is a framework to help inst"
+          ],
+          "answer": "Prior to the production of any Automated Decision System, the responsible Assistant Deputy Minister must complete an Algorithmic Impact Assessment. Additionally, they must update this assessment whenever the system's functionality or scope changes."
+        },
+        {
+          "question_id": "Q04",
+          "question": "What transparency notice must be given before an automated decision is made?",
+          "ground_truth": "Notice through all service delivery channels in use that the decision will be undertaken in whole or in part by an automated decision system, given prominently and in plain language per the Canada.ca Content Style Guide.",
+          "contexts": [
+            "[P03 Transparency: notice before decisions] Departments must provide notice through all service delivery channels in use that the decision rendered will be undertaken in whole or in part by an Automated Decision System, as prescribed in Appendix C. Notices must be provided prominently and in plain language, pursuant to the Canada.ca Content Style Guide.",
+            "[P04 Transparency: explanations and proprietary components] Departments must provide a meaningful explanation to affected individuals of how and why the decision was made, as prescribed in Appendix C. For proprietary software components, the Government of Canada retains the right to access and test the Automated Decision System, including all released versions of proprietary software components, in case it is necessary for a specific audit, investigation,",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C."
+          ],
+          "answer": "Departments must provide notice through all service delivery channels in use stating that the decision will be undertaken in whole or in part by an Automated Decision System. As prescribed in Appendix C, these notices must be provided prominently and in plain language pursuant to the Canada.ca Content Style Guide."
+        },
+        {
+          "question_id": "Q05",
+          "question": "What explanation is an affected individual entitled to after an automated decision?",
+          "ground_truth": "A meaningful explanation of how and why the decision was made, as prescribed in Appendix C.",
+          "contexts": [
+            "[P04 Transparency: explanations and proprietary components] Departments must provide a meaningful explanation to affected individuals of how and why the decision was made, as prescribed in Appendix C. For proprietary software components, the Government of Canada retains the right to access and test the Automated Decision System, including all released versions of proprietary software components, in case it is necessary for a specific audit, investigation,",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P07 Data quality, peer review, training, security, legal] iant use of the Automated Decision System."
+          ],
+          "answer": "Affected individuals are entitled to a meaningful explanation of how and why the decision was made, as prescribed in Appendix C."
+        },
+        {
+          "question_id": "Q06",
+          "question": "What access rights does the Government of Canada keep over proprietary components of an automated decision system?",
+          "ground_truth": "The right to access and test the system, including all released versions of proprietary components, for audit, investigation, inspection, examination, enforcement action, or judicial proceeding, and the right to authorize external parties to review and audit them.",
+          "contexts": [
+            "[P04 Transparency: explanations and proprietary components] Departments must provide a meaningful explanation to affected individuals of how and why the decision was made, as prescribed in Appendix C. For proprietary software components, the Government of Canada retains the right to access and test the Automated Decision System, including all released versions of proprietary software components, in case it is necessary for a specific audit, investigation,",
+            "[P04 Transparency: explanations and proprietary components] inspection, examination, enforcement action, or judicial proceeding, subject to safeguards against unauthorized disclosure. As part of this access, the Government of Canada retains the right to authorize external parties to review and audit these components as necessary.",
+            "[P02 Algorithmic Impact Assessment duties] ctionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government."
+          ],
+          "answer": "The Government of Canada retains the right to access and test the Automated Decision System, including all released versions of proprietary software components, for specific audits, investigations, inspections, examinations, enforcement actions, or judicial proceedings. Additionally, the government has the right to authorize external parties to review and audit these components as necessary, subject to safeguards against unauthorized disclosure."
+        },
+        {
+          "question_id": "Q07",
+          "question": "What bias testing must happen before an automated decision system goes into production?",
+          "ground_truth": "Processes must ensure the data and information used by the system are tested for unintended data biases and other factors that may unfairly impact outcomes.",
+          "contexts": [
+            "[P06 Quality assurance: bias testing and outcome monitoring] nstitutional and program legislation, as well as this Directive, on a scheduled basis.",
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with i",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C."
+          ],
+          "answer": "Before launching into production, departments must develop processes so that the data and information used by Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact outcomes."
+        },
+        {
+          "question_id": "Q08",
+          "question": "What ongoing monitoring does the Directive require for automated decision system outcomes?",
+          "ground_truth": "Processes to monitor outcomes on a scheduled basis to safeguard against unintentional outcomes and verify compliance with institutional and program legislation and the Directive.",
+          "contexts": [
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with i",
+            "[P01 Directive purpose, effective date and scope] t applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P05 Source code release and documenting decisions] decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements."
+          ],
+          "answer": "Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance. Additionally, this outcome monitoring helps support monitoring and reporting requirements in accordance with the Directive on Service and Digital."
+        },
+        {
+          "question_id": "Q09",
+          "question": "What recourse and reporting duties apply under the Directive?",
+          "ground_truth": "Provide clients with applicable recourse options to challenge the administrative decision, and publish information on the effectiveness and efficiency of the systems in meeting program objectives on a TBS-designated website or service.",
+          "contexts": [
+            "[P09 Recourse and public reporting] Departments must provide clients with any applicable recourse options that are available to them to challenge the administrative decision. They must publish information on the effectiveness and efficiency of the Automated Decision Systems in meeting program objectives on a website or service designated by the Treasury Board of Canada.",
+            "[P05 Source code release and documenting decisions] decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system fun"
+          ],
+          "answer": "Based on the provided passages, departments must provide clients with applicable recourse options to challenge administrative decisions. Additionally, they must publish information on the effectiveness and efficiency of Automated Decision Systems in meeting program objectives on a designated website or service."
+        },
+        {
+          "question_id": "Q10",
+          "question": "What does the Directive require about human involvement in automated decision systems?",
+          "ground_truth": "The system must allow for human intervention when appropriate, as per Appendix C, and the appropriate level of approvals must be obtained before production.",
+          "contexts": [
+            "[P01 Directive purpose, effective date and scope] t applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P05 Source code release and documenting decisions] decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements."
+          ],
+          "answer": "Based on the provided passages, departments must ensure that an Automated Decision System allows for human intervention when appropriate, as outlined in Appendix C. Additionally, they are required to obtain the appropriate level of approvals prior to the production of the system."
+        },
+        {
+          "question_id": "Q11",
+          "question": "When does OSFI Guideline E-23 take effect, and what does it cover?",
+          "ground_truth": "It takes effect May 1, 2027, covering all federally regulated financial institutions, all models regardless of purpose or risk significance, and third parties such as service providers developing models externally.",
+          "contexts": [
+            "[P11 OSFI Guideline E-23 scope and effective date] OSFI's updated Guideline E-23 on model risk management will come into force on May 1, 2027, and addresses the increased use of artificial intelligence and machine learning models by federally regulated financial institutions (FRFIs). The Guideline will apply to all FRFIs, including banks, foreign bank branches, property and casualty companies, trust and loan companies, and life insurance and frate",
+            "[P11 OSFI Guideline E-23 scope and effective date] rnal companies; to all models regardless of their purpose or the significance of their risk; and to third parties, for example where an FRFI engages a service provider to develop a model externally.",
+            "[P14 OSFI E-23 third parties, teams and resources] FRFIs must include models or data sourced from external sources like foreign offices or third-party vendors, pursuant to OSFI Guideline B-10 Third-Party Risk Management. FRFIs must assess and manage risks from third-party model vendors who do not meet model risk management standards, through oversight, documented governance processes, and vendor contracts. To assess model risks, FRFIs should estab"
+          ],
+          "answer": "OSFI Guideline E-23 will come into force on May 1, 2027, and addresses the increased use of artificial intelligence and machine learning models by federally regulated financial institutions (FRFIs). It applies to all FRFIs, all models regardless of purpose or risk significance, and third parties such as external service providers."
+        },
+        {
+          "question_id": "Q12",
+          "question": "What model lifecycle stages must FRFIs govern under Guideline E-23?",
+          "ground_truth": "Model design, review and approval, deployment, monitoring, and decommissioning, supported by model identification and inventory, risk ratings, and full lifecycle governance.",
+          "contexts": [
+            "[P11 OSFI Guideline E-23 scope and effective date] OSFI's updated Guideline E-23 on model risk management will come into force on May 1, 2027, and addresses the increased use of artificial intelligence and machine learning models by federally regulated financial institutions (FRFIs). The Guideline will apply to all FRFIs, including banks, foreign bank branches, property and casualty companies, trust and loan companies, and life insurance and frate",
+            "[P13 OSFI E-23 model lifecycle expectations] OSFI expects policies, procedures and controls covering the full model lifecycle. Model design should include the rationale for modelling, such as the model's purpose and specific business use case, measures to preserve data quality so data is accurate, fit for use, traceable and relevant, and development processes with clear standards for performance and documentation. Review and approval require",
+            "[P11 OSFI Guideline E-23 scope and effective date] rnal companies; to all models regardless of their purpose or the significance of their risk; and to third parties, for example where an FRFI engages a service provider to develop a model externally."
+          ],
+          "answer": "Under Guideline E-23, OSFI expects federally regulated financial institutions (FRFIs) to have policies, procedures, and controls covering the full model lifecycle. This includes model design (covering purpose, business use case, data quality measures, and development processes with performance and documentation standards), as well as review and approval."
+        }
+      ],
+      "scores": [
+        {
+          "question_id": "Q01",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 1.0
+        },
+        {
+          "question_id": "Q02",
+          "faithfulness": 1.0,
+          "context_precision": 0.5,
+          "answer_relevancy": 0.0691
+        },
+        {
+          "question_id": "Q03",
+          "faithfulness": 1.0,
+          "context_precision": 0.0,
+          "answer_relevancy": 0.0726
+        },
+        {
+          "question_id": "Q04",
+          "faithfulness": 0.75,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.1887
+        },
+        {
+          "question_id": "Q05",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.3587
+        },
+        {
+          "question_id": "Q06",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.6939
+        },
+        {
+          "question_id": "Q07",
+          "faithfulness": 1.0,
+          "context_precision": 0.5,
+          "answer_relevancy": 0.1172
+        },
+        {
+          "question_id": "Q08",
+          "faithfulness": 0.6667,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.1475
+        },
+        {
+          "question_id": "Q09",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.0899
+        },
+        {
+          "question_id": "Q10",
+          "faithfulness": 1.0,
+          "context_precision": 0.5,
+          "answer_relevancy": 0.1208
+        },
+        {
+          "question_id": "Q11",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.5182
+        },
+        {
+          "question_id": "Q12",
+          "faithfulness": 1.0,
+          "context_precision": 0.0,
+          "answer_relevancy": 0.1475
+        }
+      ],
+      "means": {
+        "faithfulness": 0.9514,
+        "context_precision": 0.7083,
+        "answer_relevancy": 0.2937
+      }
+    },
+    "improved": {
+      "config": {
+        "chunk_size": 900,
+        "overlap": 150,
+        "top_k": 6
+      },
+      "n_chunks": 15,
+      "samples": [
+        {
+          "question_id": "Q01",
+          "question": "When did the Directive on Automated Decision-Making take effect, and by when was compliance required?",
+          "ground_truth": "The Directive took effect on April 1, 2019, with compliance required by April 1, 2020.",
+          "contexts": [
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with institutional and program legislation, as well as this Directive, on a scheduled basis.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P05 Source code release and documenting decisions] Departments must release custom source code owned by the Government of Canada as per the Directive on Service and Digital, unless the source code is processing data classified SECRET, TOP SECRET or PROTECTED C, disclosure would otherwise be exempted or excluded under the Access to Information Act, or an exemption is provided by the Chief Information Officer of Canada. Departments must document the decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements.",
+            "[P07 Data quality, peer review, training, security, legal] Departments must validate that the data collected for, and used by, the Automated Decision System is relevant, accurate, up to date, and in accordance with the Policy on Service and Digital and the Privacy Act. They must consult the appropriate qualified expert to review the Automated Decision System as prescribed in Appendix C. They must provide adequate employee training in the design, function, and implementation of the Automated Decision System to be able to review, explain and oversee its operations. They must establish contingency systems and processes, conduct risk assessments during the development cycle and establish appropriate safeguards as per the Policy on Government Security, and consult with the institution's legal services from the concept stage of a project to ensure compliant use of the Automated Decision System."
+          ],
+          "answer": "The Directive on Automated Decision-Making took effect on April 1, 2019. Compliance with the directive was required by no later than April 1, 2020."
+        },
+        {
+          "question_id": "Q02",
+          "question": "Which kinds of systems are excluded from the Directive's scope?",
+          "ground_truth": "Automated Decision Systems operating in test environments, National Security Systems, and systems developed or procured on or before April 1, 2020.",
+          "contexts": [
+            "[P05 Source code release and documenting decisions] Departments must release custom source code owned by the Government of Canada as per the Directive on Service and Digital, unless the source code is processing data classified SECRET, TOP SECRET or PROTECTED C, disclosure would otherwise be exempted or excluded under the Access to Information Act, or an exemption is provided by the Chief Information Officer of Canada. Departments must document the decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with institutional and program legislation, as well as this Directive, on a scheduled basis.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P10 Definitions: ADS and AIA] An Automated Decision System includes any technology that either assists or replaces the judgement of human decision-makers. These systems draw from fields like statistics, linguistics, and computer science, and use techniques such as rules-based systems, regression, predictive analytics, machine learning, deep learning, and neural nets. An Algorithmic Impact Assessment is a framework to help institutions better understand and reduce the risks associated with Automated Decision Systems and to provide the appropriate governance, oversight and reporting or audit requirements that best match the type of application being designed.",
+            "[P09 Recourse and public reporting] Departments must provide clients with any applicable recourse options that are available to them to challenge the administrative decision. They must publish information on the effectiveness and efficiency of the Automated Decision Systems in meeting program objectives on a website or service designated by the Treasury Board of Canada."
+          ],
+          "answer": "Based on the provided passages, the Directive on Automated Decision-Making excludes Automated Decision Systems operating in test environments and National Security Systems."
+        },
+        {
+          "question_id": "Q03",
+          "question": "What must a department do with the Algorithmic Impact Assessment before production and after changes?",
+          "ground_truth": "Complete the AIA before production, update it when system functionality or scope changes, and publish the final results in an accessible format via Government of Canada websites.",
+          "contexts": [
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P10 Definitions: ADS and AIA] An Automated Decision System includes any technology that either assists or replaces the judgement of human decision-makers. These systems draw from fields like statistics, linguistics, and computer science, and use techniques such as rules-based systems, regression, predictive analytics, machine learning, deep learning, and neural nets. An Algorithmic Impact Assessment is a framework to help institutions better understand and reduce the risks associated with Automated Decision Systems and to provide the appropriate governance, oversight and reporting or audit requirements that best match the type of application being designed.",
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with institutional and program legislation, as well as this Directive, on a scheduled basis.",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P12 OSFI E-23 model risk management framework] OSFI expects FRFIs to establish a model risk management framework that includes risk assessment, where each model's risk is assessed with a focus on model vulnerabilities and the materiality of model impacts; risk management, where the scope, scale and intensity of model governance requirements and risk mitigants are informed by a model's inherent risk; and model identification, where processes are in place to identify and create an inventory of models used throughout the organization. FRFIs must develop risk-based policies and procedures for model use that are proportional to their size, risk profile, complexity of operations, and interconnectedness in the financial system.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020."
+          ],
+          "answer": "Prior to the production of any Automated Decision System, the responsible Assistant Deputy Minister must complete an Algorithmic Impact Assessment and apply the relevant requirements prescribed in Appendix C. Additionally, they must update the Algorithmic Impact Assessment whenever the system's functionality or scope changes."
+        },
+        {
+          "question_id": "Q04",
+          "question": "What transparency notice must be given before an automated decision is made?",
+          "ground_truth": "Notice through all service delivery channels in use that the decision will be undertaken in whole or in part by an automated decision system, given prominently and in plain language per the Canada.ca Content Style Guide.",
+          "contexts": [
+            "[P03 Transparency: notice before decisions] Departments must provide notice through all service delivery channels in use that the decision rendered will be undertaken in whole or in part by an Automated Decision System, as prescribed in Appendix C. Notices must be provided prominently and in plain language, pursuant to the Canada.ca Content Style Guide.",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P04 Transparency: explanations and proprietary components] Departments must provide a meaningful explanation to affected individuals of how and why the decision was made, as prescribed in Appendix C. For proprietary software components, the Government of Canada retains the right to access and test the Automated Decision System, including all released versions of proprietary software components, in case it is necessary for a specific audit, investigation, inspection, examination, enforcement action, or judicial proceeding, subject to safeguards against unauthorized disclosure. As part of this access, the Government of Canada retains the right to authorize external parties to review and audit these components as necessary.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P07 Data quality, peer review, training, security, legal] Departments must validate that the data collected for, and used by, the Automated Decision System is relevant, accurate, up to date, and in accordance with the Policy on Service and Digital and the Privacy Act. They must consult the appropriate qualified expert to review the Automated Decision System as prescribed in Appendix C. They must provide adequate employee training in the design, function, and implementation of the Automated Decision System to be able to review, explain and oversee its operations. They must establish contingency systems and processes, conduct risk assessments during the development cycle and establish appropriate safeguards as per the Policy on Government Security, and consult with the institution's legal services from the concept stage of a project to ensure compliant use of the Automated Decision System.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government."
+          ],
+          "answer": "Departments must provide prominent notice in plain language through all service delivery channels in use, informing individuals that the decision rendered will be undertaken in whole or in part by an Automated Decision System."
+        },
+        {
+          "question_id": "Q05",
+          "question": "What explanation is an affected individual entitled to after an automated decision?",
+          "ground_truth": "A meaningful explanation of how and why the decision was made, as prescribed in Appendix C.",
+          "contexts": [
+            "[P04 Transparency: explanations and proprietary components] Departments must provide a meaningful explanation to affected individuals of how and why the decision was made, as prescribed in Appendix C. For proprietary software components, the Government of Canada retains the right to access and test the Automated Decision System, including all released versions of proprietary software components, in case it is necessary for a specific audit, investigation, inspection, examination, enforcement action, or judicial proceeding, subject to safeguards against unauthorized disclosure. As part of this access, the Government of Canada retains the right to authorize external parties to review and audit these components as necessary.",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P07 Data quality, peer review, training, security, legal] Departments must validate that the data collected for, and used by, the Automated Decision System is relevant, accurate, up to date, and in accordance with the Policy on Service and Digital and the Privacy Act. They must consult the appropriate qualified expert to review the Automated Decision System as prescribed in Appendix C. They must provide adequate employee training in the design, function, and implementation of the Automated Decision System to be able to review, explain and oversee its operations. They must establish contingency systems and processes, conduct risk assessments during the development cycle and establish appropriate safeguards as per the Policy on Government Security, and consult with the institution's legal services from the concept stage of a project to ensure compliant use of the Automated Decision System.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with institutional and program legislation, as well as this Directive, on a scheduled basis."
+          ],
+          "answer": "Departments must provide a meaningful explanation to affected individuals regarding how and why an automated decision was made, as prescribed in Appendix C."
+        },
+        {
+          "question_id": "Q06",
+          "question": "What access rights does the Government of Canada keep over proprietary components of an automated decision system?",
+          "ground_truth": "The right to access and test the system, including all released versions of proprietary components, for audit, investigation, inspection, examination, enforcement action, or judicial proceeding, and the right to authorize external parties to review and audit them.",
+          "contexts": [
+            "[P04 Transparency: explanations and proprietary components] Departments must provide a meaningful explanation to affected individuals of how and why the decision was made, as prescribed in Appendix C. For proprietary software components, the Government of Canada retains the right to access and test the Automated Decision System, including all released versions of proprietary software components, in case it is necessary for a specific audit, investigation, inspection, examination, enforcement action, or judicial proceeding, subject to safeguards against unauthorized disclosure. As part of this access, the Government of Canada retains the right to authorize external parties to review and audit these components as necessary.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P05 Source code release and documenting decisions] Departments must release custom source code owned by the Government of Canada as per the Directive on Service and Digital, unless the source code is processing data classified SECRET, TOP SECRET or PROTECTED C, disclosure would otherwise be exempted or excluded under the Access to Information Act, or an exemption is provided by the Chief Information Officer of Canada. Departments must document the decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P07 Data quality, peer review, training, security, legal] Departments must validate that the data collected for, and used by, the Automated Decision System is relevant, accurate, up to date, and in accordance with the Policy on Service and Digital and the Privacy Act. They must consult the appropriate qualified expert to review the Automated Decision System as prescribed in Appendix C. They must provide adequate employee training in the design, function, and implementation of the Automated Decision System to be able to review, explain and oversee its operations. They must establish contingency systems and processes, conduct risk assessments during the development cycle and establish appropriate safeguards as per the Policy on Government Security, and consult with the institution's legal services from the concept stage of a project to ensure compliant use of the Automated Decision System.",
+            "[P03 Transparency: notice before decisions] Departments must provide notice through all service delivery channels in use that the decision rendered will be undertaken in whole or in part by an Automated Decision System, as prescribed in Appendix C. Notices must be provided prominently and in plain language, pursuant to the Canada.ca Content Style Guide."
+          ],
+          "answer": "For proprietary software components, the Government of Canada retains the right to access and test the Automated Decision System\u2014including all released versions of these components\u2014if it is necessary for a specific audit, investigation, inspection, examination, enforcement action, or judicial proceeding, subject to safeguards against unauthorized disclosure. Additionally, the Government of Canada retains the right to authorize external parties to review and audit these components as necessary."
+        },
+        {
+          "question_id": "Q07",
+          "question": "What bias testing must happen before an automated decision system goes into production?",
+          "ground_truth": "Processes must ensure the data and information used by the system are tested for unintended data biases and other factors that may unfairly impact outcomes.",
+          "contexts": [
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with institutional and program legislation, as well as this Directive, on a scheduled basis.",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P07 Data quality, peer review, training, security, legal] Departments must validate that the data collected for, and used by, the Automated Decision System is relevant, accurate, up to date, and in accordance with the Policy on Service and Digital and the Privacy Act. They must consult the appropriate qualified expert to review the Automated Decision System as prescribed in Appendix C. They must provide adequate employee training in the design, function, and implementation of the Automated Decision System to be able to review, explain and oversee its operations. They must establish contingency systems and processes, conduct risk assessments during the development cycle and establish appropriate safeguards as per the Policy on Government Security, and consult with the institution's legal services from the concept stage of a project to ensure compliant use of the Automated Decision System.",
+            "[P03 Transparency: notice before decisions] Departments must provide notice through all service delivery channels in use that the decision rendered will be undertaken in whole or in part by an Automated Decision System, as prescribed in Appendix C. Notices must be provided prominently and in plain language, pursuant to the Canada.ca Content Style Guide."
+          ],
+          "answer": "Before launching into production, departments must develop processes to test the data and information used by Automated Decision Systems for unintended data biases and other factors that may unfairly impact outcomes."
+        },
+        {
+          "question_id": "Q08",
+          "question": "What ongoing monitoring does the Directive require for automated decision system outcomes?",
+          "ground_truth": "Processes to monitor outcomes on a scheduled basis to safeguard against unintentional outcomes and verify compliance with institutional and program legislation and the Directive.",
+          "contexts": [
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with institutional and program legislation, as well as this Directive, on a scheduled basis.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P05 Source code release and documenting decisions] Departments must release custom source code owned by the Government of Canada as per the Directive on Service and Digital, unless the source code is processing data classified SECRET, TOP SECRET or PROTECTED C, disclosure would otherwise be exempted or excluded under the Access to Information Act, or an exemption is provided by the Chief Information Officer of Canada. Departments must document the decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P07 Data quality, peer review, training, security, legal] Departments must validate that the data collected for, and used by, the Automated Decision System is relevant, accurate, up to date, and in accordance with the Policy on Service and Digital and the Privacy Act. They must consult the appropriate qualified expert to review the Automated Decision System as prescribed in Appendix C. They must provide adequate employee training in the design, function, and implementation of the Automated Decision System to be able to review, explain and oversee its operations. They must establish contingency systems and processes, conduct risk assessments during the development cycle and establish appropriate safeguards as per the Policy on Government Security, and consult with the institution's legal services from the concept stage of a project to ensure compliant use of the Automated Decision System."
+          ],
+          "answer": "Based on the provided passages, departments must develop processes to monitor the outcomes of Automated Decision Systems on a scheduled basis. This ongoing monitoring is required to safeguard against unintentional outcomes and to verify compliance with institutional and program legislation, as well as the Directive."
+        },
+        {
+          "question_id": "Q09",
+          "question": "What recourse and reporting duties apply under the Directive?",
+          "ground_truth": "Provide clients with applicable recourse options to challenge the administrative decision, and publish information on the effectiveness and efficiency of the systems in meeting program objectives on a TBS-designated website or service.",
+          "contexts": [
+            "[P09 Recourse and public reporting] Departments must provide clients with any applicable recourse options that are available to them to challenge the administrative decision. They must publish information on the effectiveness and efficiency of the Automated Decision Systems in meeting program objectives on a website or service designated by the Treasury Board of Canada.",
+            "[P02 Algorithmic Impact Assessment duties] The Assistant Deputy Minister responsible for the program using the Automated Decision System is responsible for completing an Algorithmic Impact Assessment prior to the production of any Automated Decision System. They must apply the relevant requirements prescribed in Appendix C as determined by the Algorithmic Impact Assessment. They must update the Algorithmic Impact Assessment when system functionality or the scope of the Automated Decision System changes. They must release the final results of Algorithmic Impact Assessments in an accessible format via Government of Canada websites and any other services designated by the Treasury Board of Canada Secretariat pursuant to the Directive on Open Government.",
+            "[P05 Source code release and documenting decisions] Departments must release custom source code owned by the Government of Canada as per the Directive on Service and Digital, unless the source code is processing data classified SECRET, TOP SECRET or PROTECTED C, disclosure would otherwise be exempted or excluded under the Access to Information Act, or an exemption is provided by the Chief Information Officer of Canada. Departments must document the decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P10 Definitions: ADS and AIA] An Automated Decision System includes any technology that either assists or replaces the judgement of human decision-makers. These systems draw from fields like statistics, linguistics, and computer science, and use techniques such as rules-based systems, regression, predictive analytics, machine learning, deep learning, and neural nets. An Algorithmic Impact Assessment is a framework to help institutions better understand and reduce the risks associated with Automated Decision Systems and to provide the appropriate governance, oversight and reporting or audit requirements that best match the type of application being designed.",
+            "[P11 OSFI Guideline E-23 scope and effective date] OSFI's updated Guideline E-23 on model risk management will come into force on May 1, 2027, and addresses the increased use of artificial intelligence and machine learning models by federally regulated financial institutions (FRFIs). The Guideline will apply to all FRFIs, including banks, foreign bank branches, property and casualty companies, trust and loan companies, and life insurance and fraternal companies; to all models regardless of their purpose or the significance of their risk; and to third parties, for example where an FRFI engages a service provider to develop a model externally."
+          ],
+          "answer": "Under the Directive, departments must provide clients with any applicable recourse options to challenge administrative decisions. Additionally, they must publish information on the effectiveness and efficiency of the Automated Decision Systems in meeting program objectives on a website or service designated by the Treasury Board of Canada."
+        },
+        {
+          "question_id": "Q10",
+          "question": "What does the Directive require about human involvement in automated decision systems?",
+          "ground_truth": "The system must allow for human intervention when appropriate, as per Appendix C, and the appropriate level of approvals must be obtained before production.",
+          "contexts": [
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P08 Human intervention and approvals] Departments must ensure that an Automated Decision System allows for human intervention, when appropriate, as per Appendix C. They must obtain the appropriate level of approvals prior to the production of an Automated Decision System as per Appendix C.",
+            "[P06 Quality assurance: bias testing and outcome monitoring] Before launching into production, departments must develop processes so that the data and information used by the Automated Decision Systems are tested for unintended data biases and other factors that may unfairly impact the outcomes. Departments must develop processes to monitor the outcomes of Automated Decision Systems to safeguard against unintentional outcomes and to verify compliance with institutional and program legislation, as well as this Directive, on a scheduled basis.",
+            "[P10 Definitions: ADS and AIA] An Automated Decision System includes any technology that either assists or replaces the judgement of human decision-makers. These systems draw from fields like statistics, linguistics, and computer science, and use techniques such as rules-based systems, regression, predictive analytics, machine learning, deep learning, and neural nets. An Algorithmic Impact Assessment is a framework to help institutions better understand and reduce the risks associated with Automated Decision Systems and to provide the appropriate governance, oversight and reporting or audit requirements that best match the type of application being designed.",
+            "[P05 Source code release and documenting decisions] Departments must release custom source code owned by the Government of Canada as per the Directive on Service and Digital, unless the source code is processing data classified SECRET, TOP SECRET or PROTECTED C, disclosure would otherwise be exempted or excluded under the Access to Information Act, or an exemption is provided by the Chief Information Officer of Canada. Departments must document the decisions of Automated Decision Systems in accordance with the Directive on Service and Digital, and in support of the monitoring and reporting requirements.",
+            "[P09 Recourse and public reporting] Departments must provide clients with any applicable recourse options that are available to them to challenge the administrative decision. They must publish information on the effectiveness and efficiency of the Automated Decision Systems in meeting program objectives on a website or service designated by the Treasury Board of Canada."
+          ],
+          "answer": "Based on the provided documents, departments must ensure that an Automated Decision System allows for human intervention when appropriate, as outlined in Appendix C. Additionally, an Automated Decision System includes any technology that either assists or replaces the judgment of human decision-makers."
+        },
+        {
+          "question_id": "Q11",
+          "question": "When does OSFI Guideline E-23 take effect, and what does it cover?",
+          "ground_truth": "It takes effect May 1, 2027, covering all federally regulated financial institutions, all models regardless of purpose or risk significance, and third parties such as service providers developing models externally.",
+          "contexts": [
+            "[P11 OSFI Guideline E-23 scope and effective date] OSFI's updated Guideline E-23 on model risk management will come into force on May 1, 2027, and addresses the increased use of artificial intelligence and machine learning models by federally regulated financial institutions (FRFIs). The Guideline will apply to all FRFIs, including banks, foreign bank branches, property and casualty companies, trust and loan companies, and life insurance and fraternal companies; to all models regardless of their purpose or the significance of their risk; and to third parties, for example where an FRFI engages a service provider to develop a model externally.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020.",
+            "[P14 OSFI E-23 third parties, teams and resources] FRFIs must include models or data sourced from external sources like foreign offices or third-party vendors, pursuant to OSFI Guideline B-10 Third-Party Risk Management. FRFIs must assess and manage risks from third-party model vendors who do not meet model risk management standards, through oversight, documented governance processes, and vendor contracts. To assess model risks, FRFIs should establish a multi-disciplinary team representing a wide range of expertise and functions from across the organization, including legal and ethics professionals. FRFIs must allocate appropriate resources to model risk management and be able to provide evidence that those resources are sufficient to support a sound governance framework.",
+            "[P13 OSFI E-23 model lifecycle expectations] evaluation criteria, monitoring measures, and escalation procedures for sharing issues with stakeholders. Decommission requires a process to alert relevant parties and to monitor any future effects.",
+            "[P12 OSFI E-23 model risk management framework] OSFI expects FRFIs to establish a model risk management framework that includes risk assessment, where each model's risk is assessed with a focus on model vulnerabilities and the materiality of model impacts; risk management, where the scope, scale and intensity of model governance requirements and risk mitigants are informed by a model's inherent risk; and model identification, where processes are in place to identify and create an inventory of models used throughout the organization. FRFIs must develop risk-based policies and procedures for model use that are proportional to their size, risk profile, complexity of operations, and interconnectedness in the financial system.",
+            "[P13 OSFI E-23 model lifecycle expectations] OSFI expects policies, procedures and controls covering the full model lifecycle. Model design should include the rationale for modelling, such as the model's purpose and specific business use case, measures to preserve data quality so data is accurate, fit for use, traceable and relevant, and development processes with clear standards for performance and documentation. Review and approval requires a process to independently assess the performance and conceptual soundness of models, including whether models are working as intended and fit for their intended purpose. Deployment requires models to be properly configured, tested, and deployed in an environment with quality and change control. Monitoring requires documented standards addressing evaluation criteria, monitoring measures, and escalation procedures for sharing issues with stakeholders. Decommission requires a process to alert re"
+          ],
+          "answer": "OSFI's updated Guideline E-23 on model risk management will come into force on May 1, 2027. It addresses the increased use of artificial intelligence and machine learning models by federally regulated financial institutions (FRFIs), and applies to all FRFIs, all models regardless of purpose or risk significance, and third parties."
+        },
+        {
+          "question_id": "Q12",
+          "question": "What model lifecycle stages must FRFIs govern under Guideline E-23?",
+          "ground_truth": "Model design, review and approval, deployment, monitoring, and decommissioning, supported by model identification and inventory, risk ratings, and full lifecycle governance.",
+          "contexts": [
+            "[P11 OSFI Guideline E-23 scope and effective date] OSFI's updated Guideline E-23 on model risk management will come into force on May 1, 2027, and addresses the increased use of artificial intelligence and machine learning models by federally regulated financial institutions (FRFIs). The Guideline will apply to all FRFIs, including banks, foreign bank branches, property and casualty companies, trust and loan companies, and life insurance and fraternal companies; to all models regardless of their purpose or the significance of their risk; and to third parties, for example where an FRFI engages a service provider to develop a model externally.",
+            "[P13 OSFI E-23 model lifecycle expectations] evaluation criteria, monitoring measures, and escalation procedures for sharing issues with stakeholders. Decommission requires a process to alert relevant parties and to monitor any future effects.",
+            "[P13 OSFI E-23 model lifecycle expectations] OSFI expects policies, procedures and controls covering the full model lifecycle. Model design should include the rationale for modelling, such as the model's purpose and specific business use case, measures to preserve data quality so data is accurate, fit for use, traceable and relevant, and development processes with clear standards for performance and documentation. Review and approval requires a process to independently assess the performance and conceptual soundness of models, including whether models are working as intended and fit for their intended purpose. Deployment requires models to be properly configured, tested, and deployed in an environment with quality and change control. Monitoring requires documented standards addressing evaluation criteria, monitoring measures, and escalation procedures for sharing issues with stakeholders. Decommission requires a process to alert re",
+            "[P14 OSFI E-23 third parties, teams and resources] FRFIs must include models or data sourced from external sources like foreign offices or third-party vendors, pursuant to OSFI Guideline B-10 Third-Party Risk Management. FRFIs must assess and manage risks from third-party model vendors who do not meet model risk management standards, through oversight, documented governance processes, and vendor contracts. To assess model risks, FRFIs should establish a multi-disciplinary team representing a wide range of expertise and functions from across the organization, including legal and ethics professionals. FRFIs must allocate appropriate resources to model risk management and be able to provide evidence that those resources are sufficient to support a sound governance framework.",
+            "[P12 OSFI E-23 model risk management framework] OSFI expects FRFIs to establish a model risk management framework that includes risk assessment, where each model's risk is assessed with a focus on model vulnerabilities and the materiality of model impacts; risk management, where the scope, scale and intensity of model governance requirements and risk mitigants are informed by a model's inherent risk; and model identification, where processes are in place to identify and create an inventory of models used throughout the organization. FRFIs must develop risk-based policies and procedures for model use that are proportional to their size, risk profile, complexity of operations, and interconnectedness in the financial system.",
+            "[P01 Directive purpose, effective date and scope] The objective of the Directive on Automated Decision-Making is to ensure that Automated Decision Systems are deployed in a manner that reduces risks to Canadians and federal institutions, and leads to more efficient, accurate, consistent, and interpretable decisions made pursuant to Canadian law. The Directive took effect on April 1, 2019, with compliance required by no later than April 1, 2020. It applies to any system, tool, or statistical model used to recommend or make an administrative decision about a client. It applies only to systems in production and excludes Automated Decision Systems operating in test environments. It does not apply to any National Security Systems. It applies to any Automated Decision System developed or procured after April 1, 2020."
+          ],
+          "answer": "Based on the provided passages, OSFI expects policies, procedures, and controls covering the full model lifecycle, which includes the stages of model design, review and approval, deployment, monitoring, and decommission."
+        }
+      ],
+      "scores": [
+        {
+          "question_id": "Q01",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 1.0
+        },
+        {
+          "question_id": "Q02",
+          "faithfulness": 1.0,
+          "context_precision": 0.5,
+          "answer_relevancy": 0.0519
+        },
+        {
+          "question_id": "Q03",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.1853
+        },
+        {
+          "question_id": "Q04",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.2037
+        },
+        {
+          "question_id": "Q05",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.2005
+        },
+        {
+          "question_id": "Q06",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.7215
+        },
+        {
+          "question_id": "Q07",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.1172
+        },
+        {
+          "question_id": "Q08",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.1863
+        },
+        {
+          "question_id": "Q09",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.0538
+        },
+        {
+          "question_id": "Q10",
+          "faithfulness": 1.0,
+          "context_precision": 0.5,
+          "answer_relevancy": 0.1545
+        },
+        {
+          "question_id": "Q11",
+          "faithfulness": 1.0,
+          "context_precision": 1.0,
+          "answer_relevancy": 0.3387
+        },
+        {
+          "question_id": "Q12",
+          "faithfulness": 1.0,
+          "context_precision": 0.3333,
+          "answer_relevancy": 0.1652
+        }
+      ],
+      "means": {
+        "faithfulness": 1.0,
+        "context_precision": 0.8611,
+        "answer_relevancy": 0.2816
+      }
+    }
+  }
+}
